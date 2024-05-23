@@ -122,8 +122,7 @@ this.product.inventoryStatus = 'INSTOCK';
 this.productService.addProduct(this.product);
 ```
 
-8. Run application with `npm start` OBS.: If error run `npm i --force` to install modules and
-compatibled mode
+8. Run application with `npm start` OBS.: If present error, run `npm i --force` to install modules and solution incompatibled modules. After, run `npm start`
 
 ## Code scaffolding
 
