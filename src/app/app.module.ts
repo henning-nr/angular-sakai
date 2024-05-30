@@ -14,7 +14,7 @@ import { PhotoService } from './demo/service/photo.service';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
