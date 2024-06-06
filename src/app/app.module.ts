@@ -11,6 +11,11 @@ import { EventService } from './demo/service/event.service';
 import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireStorageModule } from "@angular/fire/compat/storage";
+import { environment } from "../environments/environment.prod";
+
+imports: [AngularFireModule.initializeApp(environment.firebase), AngularFireStorageModule];
 
 @NgModule({
     declarations: [
