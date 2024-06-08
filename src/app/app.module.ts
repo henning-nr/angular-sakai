@@ -11,14 +11,21 @@ import { EventService } from './demo/service/event.service';
 import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireStorageModule } from "@angular/fire/compat/storage";
+import { environment } from "../environments/environment";
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
     declarations: [
         AppComponent, NotfoundComponent
     ],
     imports: [
+        CalendarModule,
         AppRoutingModule,
-        AppLayoutModule
+        AppLayoutModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireStorageModule
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
