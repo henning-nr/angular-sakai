@@ -14,12 +14,14 @@ import { PhotoService } from './demo/service/photo.service';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireStorageModule } from "@angular/fire/compat/storage";
 import { environment } from "../environments/environment";
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
     declarations: [
         AppComponent, NotfoundComponent
     ],
     imports: [
+        CalendarModule,
         AppRoutingModule,
         AppLayoutModule,
         AngularFireModule.initializeApp(environment.firebase),
