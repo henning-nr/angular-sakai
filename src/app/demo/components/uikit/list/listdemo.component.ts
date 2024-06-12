@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { DataView } from 'primeng/dataview';
 import { Product } from 'src/app/demo/api/product';
-import { ProductService } from 'src/app/demo/service/product.service';
+import { ProductService } from 'src/app/demo/components/pages/crud/services/product.service';
 
 @Component({
     templateUrl: './listdemo.component.html'
