@@ -90,11 +90,12 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-pencil',
                         routerLink: ['/pages/pet']
                     },
-
+                    {
                         label: 'Tutors',
                         icon: 'pi pi-fw pi-pencil',
                         routerLink: ['/pages/tutor']
-
+                    },
+                    {
                         label: 'Services',
                         icon: 'pi pi-fw pi-pencil',
                         routerLink: ['/pages/service']
