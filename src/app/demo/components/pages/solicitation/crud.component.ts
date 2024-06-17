@@ -1,9 +1,9 @@
 // components/solicitation/solicitation.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Solicitation } from './models/sol.models';
-import { PetService } from '../../services/pet.service';
-import { TutorService } from '../../services/tutor.service';
-import { ServicoService } from '../../services/service.service';
+import { PetService } from '../pet/services/pet.service';
+import { TutorService } from '../tutor/services/tutor.service';
+import { ServiceService } from '../service/services/service.service';
 import { SolicitationService } from './services/sol.services';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
@@ -13,7 +13,7 @@ import { Table } from 'primeng/table';
     templateUrl: './solicitation.component.html',
     providers: [MessageService]
 })
-export class SolicitationComponent implements OnInit {
+export class CrudComponent implements OnInit {
     solicitationDialog: boolean = false;
     deleteSolicitationDialog: boolean = false;
     deleteSolicitationsDialog: boolean = false;
@@ -32,7 +32,7 @@ export class SolicitationComponent implements OnInit {
         private solicitationService: SolicitationService,
         private petService: PetService,
         private tutorService: TutorService,
-        private servicoService: ServicoService,
+        private servicoService: ServiceService,
         private messageService: MessageService
     ) {}
 

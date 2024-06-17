@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
         { path: 'service', loadChildren: () => import('./service/crud.module').then(m => m.CrudModule) },
 
         { path: 'empty', loadChildren: () => import('./empty/emptydemo.module').then(m => m.EmptyDemoModule) },
+
+        { path: 'solicitation', loadChildren: () => import('./solicitation/crud.module').then(m => m.CrudModule) },
         { path: 'timeline', loadChildren: () => import('./timeline/timelinedemo.module').then(m => m.TimelineDemoModule) },
         { path: '**', redirectTo: '/notfound' }
     ])],

@@ -1,10 +1,10 @@
 // solicitation-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SolicitationComponent } from './crud.component';
+import {  CrudComponent } from './crud.component';
 
 @NgModule({
-    imports: [RouterModule.forChild([{ path: '', component: SolicitationComponent }])],
+    imports: [RouterModule.forChild([{ path: '', component:  CrudComponent }])],
     exports: [RouterModule]
 })
 export class SolicitationRoutingModule {}
@@ -32,6 +32,6 @@ import { CalendarModule } from 'primeng/calendar';
         DropdownModule,
         CalendarModule
     ],
-    declarations: [SolicitationComponent]
+    declarations: [CrudRoutingModule]
 })
-export class SolicitationModule {}
+export class CrudRoutingModule {}
