@@ -3,6 +3,7 @@ import { Tutor } from './models/tutor.model'; // Certifique-se de que o caminho 
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { TutorService } from './services/tutor.service';
+import { CepService } from './services/cep.service';
 
 @Component({
     templateUrl: './crud.component.html',
@@ -30,10 +31,18 @@ export class CrudComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private tutorService: TutorService, private messageService: MessageService) { }
+    ufs: any[] =[];
+
+    municipios: any[] = [];
+
+
+    constructor(private tutorService: TutorService, private messageService: MessageService, private cepService: CepService) { }
 
 
     ngOnInit() {
+        this.cepService.buscarEstados().subscribe((ufs:any[]) => {
+            this.ufs = ufs
+        })
         this.tutorService.getTutors().subscribe(data => this.tutors = data);
 
         this.tutorService.getTutors().subscribe((tutors: Tutor[])=>{ // Altere para o tipo Tutor[]
@@ -60,6 +69,36 @@ export class CrudComponent implements OnInit {
             { label: 'Outro', value: 'Outro' }
         ];
     }
+
+    getCep(cep: any) {
+        this.cepService.buscar(cep).subscribe(
+          (cep:any) => {
+            this.tutor.logradouro = cep.logradouro
+            const estadoId = this.ufs.find((estado: any) => estado.sigla == cep.uf)
+            this.tutor.estado = estadoId
+            this.tutor.bairro = cep.bairro
+            this.getMunicipios(estadoId.id)
+            setTimeout(() => {
+                const municipioId = this.municipios.find((cidade: any) => cidade.nome == cep.localidade)
+                this.tutor.municipio = municipioId
+
+            }, 500)
+            }
+        )
+      }
+
+      getMunicipios(code: string) {
+        this.cepService.buscarMunicipios(code).subscribe(
+            (municipios:any) => {
+                this.municipios = municipios
+            }
+        )
+      }
+
+      testeUF() {
+        console.log('municipio', this.tutor.municipio);
+      }
+
 
     openNew() {
         this.tutor = {};

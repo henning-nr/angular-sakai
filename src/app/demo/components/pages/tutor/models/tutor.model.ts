@@ -1,11 +1,12 @@
 export interface Tutor {
     key?: string;
     id?: string;
+    logradouro?: string;
     nome?: string;
     rua?: string;
     bairro?: string;
     numero?: number;
-    cidade?: string;
+    municipio?: string;
     cep?: string;
     estado?: string;
     telefone?: string;
