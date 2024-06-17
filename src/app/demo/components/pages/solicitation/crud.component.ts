@@ -10,7 +10,7 @@ import { Table } from 'primeng/table';
 
 @Component({
     selector: 'app-solicitation',
-    templateUrl: './solicitation.component.html',
+    templateUrl: './crud.component.html',
     providers: [MessageService]
 })
 export class CrudComponent implements OnInit {
