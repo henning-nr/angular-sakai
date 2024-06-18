@@ -56,8 +56,8 @@ export class AppMenuComponent implements OnInit {
             //     ]
             // },
             {
-                label: 'Pages',
-                icon: 'pi pi-fw pi-briefcase',
+                label: 'Loja',
+                icon: 'pi pi-fw pi-shop',
                 items: [
                     {
                         label: 'Cliente',
