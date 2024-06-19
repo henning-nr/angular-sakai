@@ -1,0 +1,39 @@
+<div>
+  <h1>Clients</h1>
+
+  <button (click)="showDialogToAdd()">Add New Client</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Rua</th>
+        <th>Bairro</th>
+        <th>Cidade</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td>{{ client.nome }}</td>
+        <td>{{ client.rua }}</td>
+        <td>{{ client.bairro }}</td>
+        <td>{{ client.cidade }}</td>
+        <td>
+          <button (click)="onRowSelect(client)">Edit</button>
+          <button (click)="delete()">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="displayDialog">
+    <h2>Client Details</h2>
+    <label>Nome: <input type="text" [(ngModel)]="client.nome"></label><br>
+    <label>Rua: <input type="text" [(ngModel)]="client.rua"></label><br>
+    <label>Bairro: <input type="text" [(ngModel)]="client.bairro"></label><br>
+    <label>Cidade: <input type="text" [(ngModel)]="client.cidade"></label><br>
+    <button (click)="save()">Save</button>
+    <button (click)="delete()">Delete</button>
+  </div>
+</div>
