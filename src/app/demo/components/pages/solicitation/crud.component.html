@@ -16,9 +16,9 @@
                     <tr>
                         <th pSortableColumn pSelectableRow>Pets <p-sortIcon field="pet.nome"></p-sortIcon></th>
                         <th pSortableColumn>Tutor <p-sortIcon field="tutor.nome"></p-sortIcon></th>
-                        <th pSortableColumn>Service <p-sortIcon field="service.nome"></p-sortIcon></th>
-                        <th pSortableColumn>Date <p-sortIcon field="date"></p-sortIcon></th>
-                        <th>Actions</th>
+                        <th pSortableColumn>Serviço <p-sortIcon field="service.nome"></p-sortIcon></th>
+                        <th pSortableColumn>Data<p-sortIcon field="date"></p-sortIcon></th>
+                        <th>Ações</th>
                     </tr>
                     
                     
@@ -37,7 +37,7 @@
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
                     <tr>
-                        <td colspan="5">No solicitations found.</td>
+                        <td colspan="5">Nenhuma solicitação foi encontrada</td>
                     </tr>
                 </ng-template>
             </p-table>
@@ -56,38 +56,39 @@
             <p-dropdown id="tutor" [options]="tutors" [(ngModel)]="solicitation.tutor" optionLabel="nome"></p-dropdown>
         </div>
         <div class="p-field">
-            <label for="service">Service</label>
+            <label for="service">Serviço</label>
             <p-dropdown id="service" [options]="services" [(ngModel)]="solicitation.service" optionLabel="nome"></p-dropdown>
         </div>
         <div class="p-field">
-            <label for="date">Date</label>
+            <label for="date">Data</label>
             <p-calendar id="date" [(ngModel)]="solicitation.date"></p-calendar>
         </div>
     </div>
     <div class="p-dialog-footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveSolicitation()"></button>
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-text" (click)="saveSolicitation()"></button>
     </div>
 </p-dialog>
 
 <p-dialog header="Confirm" [(visible)]="deleteSolicitationDialog" [style]="{width: '450px'}" modal="true">
     <div class="confirmation-content">
         <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i>
-        <span>Are you sure you want to delete the selected solicitation?</span>
+        <span>Você tem certeza que deseja apagar essa solicitação?
+        </span>
     </div>
     <div class="p-dialog-footer">
-        <button pButton pRipple label="No" icon="pi pi-times" class="p-button-text" (click)="deleteSolicitationDialog = false"></button>
-        <button pButton pRipple label="Yes" icon="pi pi-check" class="p-button-text" (click)="confirmDelete()"></button>
+        <button pButton pRipple label="Não" icon="pi pi-times" class="p-button-text" (click)="deleteSolicitationDialog = false"></button>
+        <button pButton pRipple label="Sim" icon="pi pi-check" class="p-button-text" (click)="confirmDelete()"></button>
     </div>
 </p-dialog>
 
 <p-dialog header="Confirm" [(visible)]="deleteSolicitationsDialog" [style]="{width: '450px'}" modal="true">
     <div class="confirmation-content">
         <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i>
-        <span>Are you sure you want to delete the selected solicitations?</span>
+        <span>Você tem certeza que deseja apagar essa solicitação?</span>
     </div>
     <div class="p-dialog-footer">
-        <button pButton pRipple label="No" icon="pi pi-times" class="p-button-text" (click)="deleteSolicitationsDialog = false"></button>
-        <button pButton pRipple label="Yes" icon="pi pi-check" class="p-button-text" (click)="confirmDeleteSelected()"></button>
+        <button pButton pRipple label="Não" icon="pi pi-times" class="p-button-text" (click)="deleteSolicitationsDialog = false"></button>
+        <button pButton pRipple label="Sim" icon="pi pi-check" class="p-button-text" (click)="confirmDeleteSelected()"></button>
     </div>
 </p-dialog>
