@@ -2,7 +2,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { Solicitation } from '../models/sol.models';
-import { map, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -23,19 +24,42 @@ export class SolicitationService {
         );
     }
 
-    addSolicitation(solicitation: Solicitation): void {
-        this.solicitationRef.push(solicitation);
+    addSolicitation(solicitation: Solicitation): Observable<any> {
+        return new Observable<any>((observer) => {
+            this.solicitationRef.push(solicitation)
+                .then(() => {
+                    observer.next();
+                    observer.complete();
+                })
+                .catch(error => {
+                    observer.error(error);
+                });
+        });
     }
 
-    updateSolicitation(key: string, value: any): void {
-        this.solicitationRef.update(key, value).catch(error => this.handleError(error));
+    updateSolicitation(key: string, value: any): Observable<any> {
+        return new Observable<any>((observer) => {
+            this.solicitationRef.update(key, value)
+                .then(() => {
+                    observer.next();
+                    observer.complete();
+                })
+                .catch(error => {
+                    observer.error(error);
+                });
+        });
     }
 
-    deleteSolicitation(key: string): void {
-        this.solicitationRef.remove(key).catch(error => this.handleError(error));
-    }
-
-    private handleError(error) {
-        console.log(error);
+    deleteSolicitation(key: string): Observable<any> {
+        return new Observable<any>((observer) => {
+            this.solicitationRef.remove(key)
+                .then(() => {
+                    observer.next();
+                    observer.complete();
+                })
+                .catch(error => {
+                    observer.error(error);
+                });
+        });
     }
 }

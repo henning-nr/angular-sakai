@@ -11,36 +11,23 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="solicitations" [columns]="cols" responsiveLayout="scroll" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" selectionMode="multiple" [(selection)]="selectedSolicitations" dataKey="id" [globalFilterFields]="['pet.name', 'tutor.name', 'service.name', 'date']" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+            <p-table #dt [value]="solicitations" [columns]="cols" responsiveLayout="scroll" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" selectionMode="multiple" [(selection)]="selectedSolicitations" dataKey="id" [globalFilterFields]="['pet.nome', 'tutor.nome', 'service.nome', 'date']" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th pSortableColumn pSelectableRow>Pet <p-sortIcon field="pet.name"></p-sortIcon></th>
-                        <th pSortableColumn>Tutor <p-sortIcon field="tutor.name"></p-sortIcon></th>
-                        <th pSortableColumn>Service <p-sortIcon field="service.name"></p-sortIcon></th>
+                        <th pSortableColumn pSelectableRow>Pets <p-sortIcon field="pet.nome"></p-sortIcon></th>
+                        <th pSortableColumn>Tutor <p-sortIcon field="tutor.nome"></p-sortIcon></th>
+                        <th pSortableColumn>Service <p-sortIcon field="service.nome"></p-sortIcon></th>
                         <th pSortableColumn>Date <p-sortIcon field="date"></p-sortIcon></th>
                         <th>Actions</th>
                     </tr>
-                    <tr>
-                        <th>
-                            <input pInputText type="text" (input)="dt.filter($event.target.value, 'pet.name', 'contains')" placeholder="Search by Pet">
-                        </th>
-                        <th>
-                            <input pInputText type="text" (input)="dt.filter($event.target.value, 'tutor.name', 'contains')" placeholder="Search by Tutor">
-                        </th>
-                        <th>
-                            <input pInputText type="text" (input)="dt.filter($event.target.value, 'service.name', 'contains')" placeholder="Search by Service">
-                        </th>
-                        <th>
-                            <input pInputText type="text" (input)="dt.filter($event.target.value, 'date', 'contains')" placeholder="Search by Date">
-                        </th>
-                        <th></th>
-                    </tr>
+                    
+                    
                 </ng-template>
                 <ng-template pTemplate="body" let-solicitation>
                     <tr [pSelectableRow]="solicitation">
-                        <td>{{ solicitation.pet?.name }}</td>
-                        <td>{{ solicitation.tutor?.name }}</td>
-                        <td>{{ solicitation.service?.name }}</td>
+                        <td>{{ solicitation.pet?.nome }}</td>
+                        <td>{{ solicitation.tutor?.nome }}</td>
+                        <td>{{ solicitation.service?.nome }}</td>
                         <td>{{ solicitation.date | date }}</td>
                         <td>
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editSolicitation(solicitation)"></button>
@@ -62,15 +49,15 @@
     <div class="p-fluid">
         <div class="p-field">
             <label for="pet">Pet</label>
-            <p-dropdown id="pet" [options]="pets" [(ngModel)]="solicitation.pet" optionLabel="name"></p-dropdown>
+            <p-dropdown id="pet" [options]="pets" [(ngModel)]="solicitation.pet" optionLabel="nome"></p-dropdown>
         </div>
         <div class="p-field">
             <label for="tutor">Tutor</label>
-            <p-dropdown id="tutor" [options]="tutors" [(ngModel)]="solicitation.tutor" optionLabel="name"></p-dropdown>
+            <p-dropdown id="tutor" [options]="tutors" [(ngModel)]="solicitation.tutor" optionLabel="nome"></p-dropdown>
         </div>
         <div class="p-field">
             <label for="service">Service</label>
-            <p-dropdown id="service" [options]="services" [(ngModel)]="solicitation.service" optionLabel="name"></p-dropdown>
+            <p-dropdown id="service" [options]="services" [(ngModel)]="solicitation.service" optionLabel="nome"></p-dropdown>
         </div>
         <div class="p-field">
             <label for="date">Date</label>
