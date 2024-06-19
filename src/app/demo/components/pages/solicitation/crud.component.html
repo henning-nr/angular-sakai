@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<p-dialog header="Solicitation Details" [(visible)]="solicitationDialog" [style]="{width: '450px'}" modal="true" [closable]="false">
+<p-dialog header="Detalhes Solicitação" [(visible)]="solicitationDialog" [style]="{width: '450px'}" modal="true" [closable]="false">
     <div class="p-fluid">
         <div class="p-field">
             <label for="pet">Pet</label>
@@ -61,7 +61,7 @@
         </div>
         <div class="p-field">
             <label for="date">Data</label>
-            <p-calendar id="date" [(ngModel)]="solicitation.date"></p-calendar>
+            <input type="date" pInputDate id="date" [(ngModel)]="solicitation.date" formatDate="dd/mm/yyyy" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !solicitation.date}"/>
         </div>
     </div>
     <div class="p-dialog-footer">

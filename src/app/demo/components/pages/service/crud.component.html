@@ -53,7 +53,7 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="serviceDialog" [style]="{width: '450px'}" header="Service Details" [modal]="true" class="p-fluid">
+        <p-dialog [(visible)]="serviceDialog" [style]="{width: '450px'}" header="Detalhes Serviços" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
                     <label for="nome">Nome</label>
@@ -74,8 +74,8 @@
                 </div>
             </ng-template>
             <ng-template pTemplate="footer">
-                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveService()"></button>
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-text" (click)="saveService()"></button>
             </ng-template>
         </p-dialog>
 
