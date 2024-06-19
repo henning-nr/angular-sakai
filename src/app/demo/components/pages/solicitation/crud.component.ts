@@ -39,18 +39,22 @@ export class CrudComponent implements OnInit {
     ngOnInit() {
         this.solicitationService.getSolicitations().subscribe((solicitations: any) => {
             this.solicitations = solicitations;
+            console.log('Solicitations:', this.solicitations); // Adicionando console.log para verificar as solicitações recebidas
         });
 
         this.petService.getPets().subscribe((pets: any) => {
             this.pets = pets;
+            console.log('Pets:', this.pets); // Adicionando console.log para verificar os pets recebidos
         });
 
         this.tutorService.getTutors().subscribe((tutors: any) => {
             this.tutors = tutors;
+            console.log('Tutors:', this.tutors); // Adicionando console.log para verificar os tutores recebidos
         });
 
         this.servicoService.getServices().subscribe((services: any) => {
             this.services = services;
+            console.log('Services:', this.services); // Adicionando console.log para verificar os serviços recebidos
         });
 
         this.cols = [
