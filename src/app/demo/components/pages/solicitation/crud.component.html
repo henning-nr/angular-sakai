@@ -20,21 +20,8 @@
                         <th pSortableColumn>Date <p-sortIcon field="date"></p-sortIcon></th>
                         <th>Actions</th>
                     </tr>
-                    <tr>
-                        <th>
-                            <input pInputText type="text" (input)="dt.filter($event.target.value, 'pet.name', 'contains')" placeholder="Search by Pet">
-                        </th>
-                        <th>
-                            <input pInputText type="text" (input)="dt.filter($event.target.value, 'tutor.name', 'contains')" placeholder="Search by Tutor">
-                        </th>
-                        <th>
-                            <input pInputText type="text" (input)="dt.filter($event.target.value, 'service.name', 'contains')" placeholder="Search by Service">
-                        </th>
-                        <th>
-                            <input pInputText type="text" (input)="dt.filter($event.target.value, 'date', 'contains')" placeholder="Search by Date">
-                        </th>
-                        <th></th>
-                    </tr>
+                    
+                    
                 </ng-template>
                 <ng-template pTemplate="body" let-solicitation>
                     <tr [pSelectableRow]="solicitation">
