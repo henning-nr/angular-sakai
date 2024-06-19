@@ -14,7 +14,7 @@
             <p-table #dt [value]="solicitations" [columns]="cols" responsiveLayout="scroll" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" selectionMode="multiple" [(selection)]="selectedSolicitations" dataKey="id" [globalFilterFields]="['pet.nome', 'tutor.nome', 'service.nome', 'date']" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th pSortableColumn pSelectableRow>Pet <p-sortIcon field="pet.nome"></p-sortIcon></th>
+                        <th pSortableColumn pSelectableRow>Pets <p-sortIcon field="pet.nome"></p-sortIcon></th>
                         <th pSortableColumn>Tutor <p-sortIcon field="tutor.nome"></p-sortIcon></th>
                         <th pSortableColumn>Service <p-sortIcon field="service.nome"></p-sortIcon></th>
                         <th pSortableColumn>Date <p-sortIcon field="date"></p-sortIcon></th>
