@@ -108,8 +108,8 @@
                 </div>
 
                 <div class="field">
-                    <label class="mb-3">Faixa Etaria</label>
-                    <!-- Radiobuttons para faixa etária -->
+                    <label class="mb-3">Faixa Etária</label>
+                    <!-- Radiobuttons para intervalo de idade -->
                     <div class="formgrid grid">
                         <div class="field-radiobutton col-6">
                             <p-radioButton id="category1" name="category" value="Crianca" [(ngModel)]="client.category"></p-radioButton>
@@ -130,7 +130,7 @@
                     </div>
                 </div>
 
-                <!-- Campos comentados: Price e Quantity -->
+                <!-- Campos discutidos aqui: Price e Quantity -->
             </ng-template>
 
             <!-- Botões de Cancelar e Salvar no rodapé do diálogo -->
@@ -144,22 +144,22 @@
         <p-dialog [(visible)]="deleteClientDialog" header="Confirmar" [modal]="true" [style]="{width:'450px'}">
             <div class="flex align-items-center justify-content-center">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="client">Você tem certeza que quer deletar <b>{{client.name}}</b>?</span>
+                <span *ngIf="client">Você tem certeza que irá deletar? <b>{{client.name}}</b>?</span>
             </div>
-            <!-- Botões de Não e Sim no rodapé do diálogo -->
+            <!-- Botão de Sim e Não no rodapé -->
             <ng-template pTemplate="footer">
                 <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Não" (click)="deleteClientDialog = false"></button>
                 <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Sim" (click)="confirmDelete()"></button>
             </ng-template>
         </p-dialog>
 
-        <!-- Diálogo de confirmação para deletar clientes selecionados -->
+        <!-- Diálogo de confirmação para apagar clientes selecionados -->
         <p-dialog [(visible)]="deleteClientsDialog" header="Confirmar" [modal]="true" [style]="{width:'450px'}">
             <div class="flex align-items-center justify-content-center">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
                 <span>Você tem certeza que quer deletar esse cliente?</span>
             </div>
-            <!-- Botões de Não e Sim no rodapé do diálogo -->
+            <!-- Botões de Sim e não na parte do rodapé do diálogo -->
             <ng-template pTemplate="footer">
                 <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Não" (click)="deleteClientsDialog = false"></button>
                 <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Sim" (click)="confirmDeleteSelected()"></button>
