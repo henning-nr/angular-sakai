@@ -6,6 +6,8 @@
 /out-tsc
 /bazel-out
 
+
+
 # Node
 /node_modules
 npm-debug.log
@@ -41,3 +43,4 @@ Thumbs.db
 # Compiled files
 layout.css
 src/assets/demo/styles/badges.css
+src/environments/environment.ts
