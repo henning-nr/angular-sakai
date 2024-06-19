@@ -1,0 +1,122 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toast></p-toast>
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <button pButton pRipple label="Novo" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                        <button pButton pRipple label="Excluir" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedPets()" [disabled]="!selectedPets || !selectedPets.length"></button>
+                    </div>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="pets" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['nome', 'especie', 'cor', 'sexo']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Exibindo de {first} a {last} do total de {totalRecords} resultados" [(selection)]="selectedPets" selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Pets - Configurações</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Pesquisar..." class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="nome">Nome <p-sortIcon field="nome"></p-sortIcon></th>
+                        <th pSortableColumn="especie">Espécie <p-sortIcon field="especie"></p-sortIcon></th>
+                        <th pSortableColumn="idade">Idade <p-sortIcon field="idade"></p-sortIcon></th>
+                        <th pSortableColumn="dataNascimento">Data de Nascimento <p-sortIcon field="dataNascimento"></p-sortIcon></th>
+                        <th pSortableColumn="peso">Peso <p-sortIcon field="peso"></p-sortIcon></th>
+                        <th pSortableColumn="cor">Cor <p-sortIcon field="cor"></p-sortIcon></th>
+                        <th pSortableColumn="sexo">Sexo <p-sortIcon field="sexo"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-pet>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="pet"></p-tableCheckbox>
+                        </td>
+                        <td><span class="p-column-title">Nome</span>{{pet.nome}}</td>
+                        <td><span class="p-column-title">Espécie</span>{{pet.especie}}</td>
+                        <td><span class="p-column-title">Idade</span>{{pet.idade}}</td>
+                        <td><span class="p-column-title">Data de Nascimento</span>{{pet.dataNascimento | date:'dd/MM/yyyy'}}</td>
+                        <td><span class="p-column-title">Peso</span>{{pet.peso}} kg</td>
+                        <td><span class="p-column-title">Cor</span>{{pet.cor}}</td>
+                        <td><span class="p-column-title">Sexo</span>{{pet.sexo}}</td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editPet(pet)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePet(pet)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <p-dialog [(visible)]="petDialog" [style]="{width: '450px'}" header="Detalhes Pets" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <div class="field">
+                    <label for="nome">Nome</label>
+                    <input type="text" pInputText id="nome" [(ngModel)]="pet.nome" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !pet.nome}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !pet.nome">Nome is required.</small>
+                </div>
+                <div class="field">
+                    <label for="especie">Espécie</label>
+                    <input type="text" pInputText id="especie" [(ngModel)]="pet.especie" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !pet.especie}"/>
+                </div>
+                <div class="field">
+                    <label for="idade">Idade</label>
+                    <p-inputNumber id="idade" [(ngModel)]="pet.idade"></p-inputNumber>
+                </div>
+                <div class="field">
+                    <label for="dataNascimento">Data de Nascimento</label>
+                    <input type="date" pInputDate id="dataNascimento" [(ngModel)]="pet.dataNascimento" formatDate="dd/mm/yyyy" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !pet.dataNascimento}"/>
+                </div>
+                <div class="field">
+                    <label for="peso">Peso (kg)</label>
+                    <p-inputNumber id="peso" [(ngModel)]="pet.peso"></p-inputNumber>
+                </div>
+                <div class="field">
+                    <label for="cor">Cor</label>
+                    <input type="text" pInputText id="cor" [(ngModel)]="pet.cor"/>
+                </div>
+                <div class="field">
+                    <label for="sexo">Sexo</label>
+                    <p-dropdown id="sexo" [(ngModel)]="pet.sexo" [options]="statuses" placeholder="Selecione o sexo"></p-dropdown>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-text" (click)="savePet()"></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog [(visible)]="deletePetDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="pet">Are you sure you want to delete <b>{{pet.nome}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deletePetDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog [(visible)]="deletePetsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span>Are you sure you want to delete selected pets?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deletePetsDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>
