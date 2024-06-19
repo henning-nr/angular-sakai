@@ -1,0 +1,39 @@
+<div>
+  <h1>Orders</h1>
+
+  <button (click)="showDialogToAdd()">Add New Order</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Items</th>
+        <th>Total</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.client }}</td>
+        <td>{{ order.items }}</td>
+        <td>{{ order.total }}</td>
+        <td>{{ order.date }}</td>
+        <td>
+          <button (click)="onRowSelect(order)">Edit</button>
+          <button (click)="delete()">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="displayDialog">
+    <h2>Order Details</h2>
+    <label>Client: <input type="text" [(ngModel)]="order.client"></label><br>
+    <label>Items: <input type="text" [(ngModel)]="order.items"></label><br>
+    <label>Total: <input type="number" [(ngModel)]="order.total"></label><br>
+    <label>Date: <input type="date" [(ngModel)]="order.date"></label><br>
+    <button (click)="save()">Save</button>
+    <button (click)="delete()">Delete</button>
+  </div>
+</div>

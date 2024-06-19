@@ -1,0 +1,43 @@
+<div>
+    <h1>Products</h1>
+  
+    <button (click)="showDialogToAdd()">Add New Product</button>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.category }}</td>
+          <td>
+            <button (click)="onRowSelect(product)">Edit</button>
+            <button (click)="delete()">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="displayDialog">
+      <h2>Product Details</h2>
+      <label>Name: <input type="text" [(ngModel)]="product.name"></label><br>
+      <label>Price: <input type="number" [(ngModel)]="product.price"></label><br>
+      <label>Category:
+        <select [(ngModel)]="product.category">
+          <option value="Pizza">Pizza</option>
+          <option value="Beverage">Beverage</option>
+          <option value="Dessert">Dessert</option>
+        </select>
+      </label><br>
+      <button (click)="save()">Save</button>
+      <button (click)="delete()">Delete</button>
+    </div>
+  </div>
+  
