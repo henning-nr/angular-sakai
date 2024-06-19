@@ -1,0 +1,93 @@
+<!-- solicitation.component.html -->
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <div>
+                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedSolicitations()" [disabled]="!selectedSolicitations.length"></button>
+                    </div>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="solicitations" [columns]="cols" responsiveLayout="scroll" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" selectionMode="multiple" [(selection)]="selectedSolicitations" dataKey="id" [globalFilterFields]="['pet.nome', 'tutor.nome', 'service.nome', 'date']" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn pSelectableRow>Pets <p-sortIcon field="pet.nome"></p-sortIcon></th>
+                        <th pSortableColumn>Tutor <p-sortIcon field="tutor.nome"></p-sortIcon></th>
+                        <th pSortableColumn>Service <p-sortIcon field="service.nome"></p-sortIcon></th>
+                        <th pSortableColumn>Date <p-sortIcon field="date"></p-sortIcon></th>
+                        <th>Actions</th>
+                    </tr>
+                    
+                    
+                </ng-template>
+                <ng-template pTemplate="body" let-solicitation>
+                    <tr [pSelectableRow]="solicitation">
+                        <td>{{ solicitation.pet?.nome }}</td>
+                        <td>{{ solicitation.tutor?.nome }}</td>
+                        <td>{{ solicitation.service?.nome }}</td>
+                        <td>{{ solicitation.date | date }}</td>
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editSolicitation(solicitation)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteSolicitation(solicitation)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="5">No solicitations found.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="Solicitation Details" [(visible)]="solicitationDialog" [style]="{width: '450px'}" modal="true" [closable]="false">
+    <div class="p-fluid">
+        <div class="p-field">
+            <label for="pet">Pet</label>
+            <p-dropdown id="pet" [options]="pets" [(ngModel)]="solicitation.pet" optionLabel="nome"></p-dropdown>
+        </div>
+        <div class="p-field">
+            <label for="tutor">Tutor</label>
+            <p-dropdown id="tutor" [options]="tutors" [(ngModel)]="solicitation.tutor" optionLabel="nome"></p-dropdown>
+        </div>
+        <div class="p-field">
+            <label for="service">Service</label>
+            <p-dropdown id="service" [options]="services" [(ngModel)]="solicitation.service" optionLabel="nome"></p-dropdown>
+        </div>
+        <div class="p-field">
+            <label for="date">Date</label>
+            <p-calendar id="date" [(ngModel)]="solicitation.date"></p-calendar>
+        </div>
+    </div>
+    <div class="p-dialog-footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveSolicitation()"></button>
+    </div>
+</p-dialog>
+
+<p-dialog header="Confirm" [(visible)]="deleteSolicitationDialog" [style]="{width: '450px'}" modal="true">
+    <div class="confirmation-content">
+        <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i>
+        <span>Are you sure you want to delete the selected solicitation?</span>
+    </div>
+    <div class="p-dialog-footer">
+        <button pButton pRipple label="No" icon="pi pi-times" class="p-button-text" (click)="deleteSolicitationDialog = false"></button>
+        <button pButton pRipple label="Yes" icon="pi pi-check" class="p-button-text" (click)="confirmDelete()"></button>
+    </div>
+</p-dialog>
+
+<p-dialog header="Confirm" [(visible)]="deleteSolicitationsDialog" [style]="{width: '450px'}" modal="true">
+    <div class="confirmation-content">
+        <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i>
+        <span>Are you sure you want to delete the selected solicitations?</span>
+    </div>
+    <div class="p-dialog-footer">
+        <button pButton pRipple label="No" icon="pi pi-times" class="p-button-text" (click)="deleteSolicitationsDialog = false"></button>
+        <button pButton pRipple label="Yes" icon="pi pi-check" class="p-button-text" (click)="confirmDeleteSelected()"></button>
+    </div>
+</p-dialog>
